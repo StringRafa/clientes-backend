@@ -1,4 +1,4 @@
-package com.panamby.clientes.rest.exception;
+package com.panamby.clientes.rest.exceptions;
 
 import java.util.List;
 
