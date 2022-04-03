@@ -20,6 +20,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.panamby.clientes.model.entities.Cliente;
 import com.panamby.clientes.model.repository.ClienteRepository;
+import com.panamby.clientes.services.ClienteService;
 
 @RestController
 @RequestMapping(value = "/api/clientes")
@@ -27,6 +28,9 @@ public class ClienteController {
 
 	@Autowired
 	private ClienteRepository repository;
+	
+	@Autowired
+	private ClienteService service;
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
@@ -52,8 +56,8 @@ public class ClienteController {
 	
 	@DeleteMapping("{id}")
 	public ResponseEntity<Void> delete(@PathVariable Long id){
-		repository.deleteById(id);
-		return ResponseEntity.noContent().build();
+			service.delete(id);
+			return ResponseEntity.noContent().build();
 	}
 	
 	@PutMapping("{id}")
