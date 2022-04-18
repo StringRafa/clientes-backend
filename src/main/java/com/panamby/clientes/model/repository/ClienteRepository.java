@@ -7,4 +7,6 @@ import com.panamby.clientes.model.entities.Cliente;
 
 public interface ClienteRepository extends JpaRepository<Cliente, Long>{
 
+	@Transactional(readOnly=true)
+	Cliente findByCpf(String cpf);
 }

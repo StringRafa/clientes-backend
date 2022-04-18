@@ -1,5 +1,6 @@
 package com.panamby.clientes.rest;
 
+import java.net.URI;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -11,14 +12,16 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.panamby.clientes.dto.ClienteDTO;
 import com.panamby.clientes.model.entities.Cliente;
 import com.panamby.clientes.model.repository.ClienteRepository;
 import com.panamby.clientes.services.ClienteService;
@@ -34,10 +37,19 @@ public class ClienteController {
 	@Autowired
 	private ClienteService service;
 
-	@PostMapping
-	@ResponseStatus(HttpStatus.CREATED)
-	public Cliente insert(@RequestBody @Valid Cliente cliente) {
-		return repository.save(cliente);
+//	@PostMapping
+//	@ResponseStatus(HttpStatus.CREATED)
+//	public Cliente insert(@RequestBody @Valid Cliente cliente) {
+//		return repository.save(cliente);
+//	}
+	
+	@RequestMapping(method = RequestMethod.POST)
+	public ResponseEntity<Void> insert(@Valid @RequestBody ClienteDTO objDTO){
+		Cliente obj = service.fromDTO(objDTO);
+		obj = service.insert(obj);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+				.path("/{id}").buildAndExpand(obj.getId()).toUri();
+		return ResponseEntity.created(uri).build();
 	}
 
 	@GetMapping(value = "/{id}")
