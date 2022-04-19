@@ -6,7 +6,6 @@ import java.time.LocalDate;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
-import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CPF;
 
 import com.panamby.clientes.model.entities.Cliente;
@@ -23,11 +22,14 @@ public class ClienteDTO implements Serializable {
 
 	private Long id;
 
-	@NotEmpty(message = "Preenchimento obrigatório")
-	@Length(min = 5,max = 120, message = "O tamanho deve ser entre 5 e 120 caracteres")
+	@NotEmpty(message = "O campo nome é de preenchimento obrigatório")
 	private String nome;
+	
+	@NotEmpty(message = "O campo Email é de preenchimento obrigatório")
+	@Email(message = "Email inválido")
+	private String email;
 
-	@NotEmpty(message = "Preenchimento obrigatório")
+	@NotEmpty(message = "O campo CPF é de preenchimento obrigatório")
 	@CPF(message = "CPF inválido")
 	private String cpf;
 
@@ -36,6 +38,7 @@ public class ClienteDTO implements Serializable {
 	public ClienteDTO(Cliente obj) {
 		id = obj.getId();
 		nome = obj.getNome();
+		email = obj.getEmail();
 		cpf = obj.getCpf();
 		dataCadastro = obj.getDataCadastro();
 	}

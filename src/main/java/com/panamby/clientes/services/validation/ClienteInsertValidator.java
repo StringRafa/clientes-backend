@@ -27,10 +27,16 @@ public class ClienteInsertValidator implements ConstraintValidator<ClienteInsert
 	public boolean isValid(ClienteDTO objDto, ConstraintValidatorContext context) {
 		List<FieldMessage> list = new ArrayList<>();
 		
-		Cliente aux = clienteRepository.findByCpf(objDto.getCpf());
+		Cliente cpf = clienteRepository.findByCpf(objDto.getCpf());
 		
-		if(aux != null) {
+		if(cpf != null) {
 			list.add(new FieldMessage("cpf", "CPF já cadastrado!"));
+		}
+		
+		Cliente email = clienteRepository.findByEmail(objDto.getEmail());
+		
+		if(email != null) {
+			list.add(new FieldMessage("email", "Email já cadastrado!"));
 		}
 
 		for (FieldMessage e : list) {

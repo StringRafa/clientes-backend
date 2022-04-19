@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -32,12 +33,12 @@ public class Cliente {
 	private Long id;
 	
 	@Column(nullable = false, length = 150)
-	@NotEmpty(message = "{campo.nome.obrigatorio}")
 	private String nome;
 	
+	@Column(unique = true)
+	private String email;
+	
 	@Column(nullable = false, length = 11, unique = true)
-	@NotNull(message = "{campo.cpf.obrigatorio}")
-	@CPF(message = "{campo.cpf.invalido}")
 	private String cpf;
 	
 	@Column(name = "data_cadastro", updatable = false)

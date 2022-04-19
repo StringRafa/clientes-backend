@@ -38,7 +38,7 @@ public class ClienteService {
 	}
 	
 	public Cliente fromDTO(ClienteDTO objDto) {
-		return new Cliente(objDto.getId(), objDto.getNome(), objDto.getCpf(), objDto.getDataCadastro());
+		return new Cliente(objDto.getId(), objDto.getNome(), objDto.getEmail(), objDto.getCpf(), objDto.getDataCadastro());
 	}
 	
 	@Transactional

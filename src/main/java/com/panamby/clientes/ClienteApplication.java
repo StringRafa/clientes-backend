@@ -20,6 +20,7 @@ public class ClienteApplication {
 			Cliente cliente1 = Cliente.builder()
 					.cpf("71169230040")
 					.nome("Rafael José de Souza")
+					.email("rafa.jo.souza@gmail.com")
 					.dataCadastro(LocalDate.now())
 					.build();
 			repository.save(cliente1);
@@ -27,6 +28,7 @@ public class ClienteApplication {
 			Cliente cliente2 = Cliente.builder()
 					.cpf("63863620046")
 					.nome("William Roberto Garcia Junior")
+					.email("william.garcia@gmail.com")
 					.build();
 			repository.save(cliente2);
 		};
