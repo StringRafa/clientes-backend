@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,13 +44,28 @@ public class ClienteController {
 //		return repository.save(cliente);
 //	}
 	
+//	@PostMapping
+//	@ResponseStatus(HttpStatus.CREATED)
+//	public Cliente insert(@RequestBody @Valid ClienteDTO objDTO) {
+//		Cliente obj = service.fromDTO(objDTO);
+//		obj = service.insert(obj);
+//		return repository.save(obj);
+//	}
+	
+//	@RequestMapping(method = RequestMethod.POST)
+//	public ResponseEntity<Void> insert(@Valid @RequestBody ClienteDTO objDTO){
+//		Cliente obj = service.fromDTO(objDTO);
+//		obj = service.insert(obj);
+//		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+//				.path("/{id}").buildAndExpand(obj.getId()).toUri();
+//		return ResponseEntity.created(uri).build();
+//	}
+	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> insert(@Valid @RequestBody ClienteDTO objDTO){
+	public ResponseEntity<Cliente> insert(@Valid @RequestBody ClienteDTO objDTO){
 		Cliente obj = service.fromDTO(objDTO);
 		obj = service.insert(obj);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-				.path("/{id}").buildAndExpand(obj.getId()).toUri();
-		return ResponseEntity.created(uri).build();
+		return ResponseEntity.ok().body(obj);
 	}
 
 	@GetMapping(value = "/{id}")
