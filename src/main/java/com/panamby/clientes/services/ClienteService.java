@@ -2,13 +2,9 @@ package com.panamby.clientes.services;
 
 import java.util.Optional;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
-
-import com.panamby.clientes.dto.ClienteDTO;
 import com.panamby.clientes.model.entities.Cliente;
 import com.panamby.clientes.model.repository.ClienteRepository;
 import com.panamby.clientes.services.exceptions.DataIntegrityException;
@@ -37,14 +33,4 @@ public class ClienteService {
 		}
 	}
 	
-	public Cliente fromDTO(ClienteDTO objDto) {
-		return new Cliente(objDto.getId(), objDto.getNome(), objDto.getCpf(), objDto.getDataCadastro());
-	}
-	
-	@Transactional
-	public Cliente insert(Cliente obj) {
-		obj.setId(null);
-		obj = repository.save(obj);
-		return obj;
-	}
 }
