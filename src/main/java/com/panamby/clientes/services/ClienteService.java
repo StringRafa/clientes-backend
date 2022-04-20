@@ -1,5 +1,6 @@
 package com.panamby.clientes.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -46,5 +47,9 @@ public class ClienteService {
 		obj.setId(null);
 		obj = repository.save(obj);
 		return obj;
+	}
+	
+	public List<Cliente> findAll() {
+		return repository.findAll();
 	}
 }
