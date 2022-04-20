@@ -65,21 +65,17 @@ public class ClienteController {
 		return ResponseEntity.ok().body(obj);
 	}
 
-	@GetMapping(value = "/{id}")
-	public Cliente findById(@PathVariable Long id) {
-		return repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+//	@GetMapping(value = "/{id}")
+//	public Cliente findById(@PathVariable Long id) {
+//		return repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+//	}
+	
+	@RequestMapping(value="/{id}", method = RequestMethod.GET)
+	public ResponseEntity<Cliente> find(@PathVariable Long id){
+		Cliente obj = service.find(id);
+		return ResponseEntity.ok().body(obj);
 	}
 
-//	@DeleteMapping("{id}")
-//	@ResponseStatus(HttpStatus.NO_CONTENT)
-//	public void delete(@PathVariable Long id) {
-//		repository.findById(id)
-//			.map(cliente -> {
-//				repository.delete(cliente);
-//				return Void.TYPE;
-//			})
-//			.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-//	}
 	
 	@DeleteMapping("{id}")
 	public ResponseEntity<Void> delete(@PathVariable Long id){
