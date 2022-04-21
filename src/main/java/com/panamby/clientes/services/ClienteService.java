@@ -10,6 +10,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.panamby.clientes.dto.ClienteDTO;
+import com.panamby.clientes.dto.ClienteNewDTO;
 import com.panamby.clientes.model.entities.Cliente;
 import com.panamby.clientes.model.repository.ClienteRepository;
 import com.panamby.clientes.services.exceptions.DataIntegrityException;
@@ -38,6 +39,10 @@ public class ClienteService {
 		}
 	}
 	
+	public Cliente fromDTO(ClienteNewDTO objDto) {
+		return new Cliente(objDto.getId(), objDto.getNome(), objDto.getEmail(), objDto.getCpf(), objDto.getDataCadastro());
+	}
+	
 	public Cliente fromDTO(ClienteDTO objDto) {
 		return new Cliente(objDto.getId(), objDto.getNome(), objDto.getEmail(), objDto.getCpf(), objDto.getDataCadastro());
 	}
@@ -51,5 +56,17 @@ public class ClienteService {
 	
 	public List<Cliente> findAll() {
 		return repository.findAll();
+	}
+	
+	public Cliente update(Cliente obj) {
+		Cliente newObj = find(obj.getId());
+		updateData(newObj, obj);
+		return repository.save(newObj);
+	}
+	
+	private void updateData(Cliente newObj, Cliente obj) {
+		newObj.setNome(obj.getNome());
+		newObj.setEmail(obj.getEmail());
+		newObj.setCpf(obj.getCpf());
 	}
 }

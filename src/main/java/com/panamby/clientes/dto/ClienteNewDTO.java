@@ -10,15 +10,15 @@ import org.hibernate.validator.constraints.br.CPF;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.panamby.clientes.model.entities.Cliente;
-import com.panamby.clientes.services.validation.ClienteInsert;
+import com.panamby.clientes.services.validation.ClienteUpdate;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@ClienteInsert
+@ClienteUpdate
 @NoArgsConstructor
-public class ClienteDTO implements Serializable {
+public class ClienteNewDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
@@ -37,7 +37,7 @@ public class ClienteDTO implements Serializable {
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataCadastro;
 
-	public ClienteDTO(Cliente obj) {
+	public ClienteNewDTO(Cliente obj) {
 		id = obj.getId();
 		nome = obj.getNome();
 		email = obj.getEmail();
