@@ -13,12 +13,11 @@ import com.panamby.clientes.model.entities.Cliente;
 import com.panamby.clientes.model.repository.ClienteRepository;
 import com.panamby.clientes.services.exceptions.FieldMessage;
 
-
 public class ClienteInsertValidator implements ConstraintValidator<ClienteInsert, ClienteDTO> {
-	
+
 	@Autowired
 	private ClienteRepository clienteRepository;
-	
+
 	@Override
 	public void initialize(ClienteInsert ann) {
 	}
@@ -26,19 +25,18 @@ public class ClienteInsertValidator implements ConstraintValidator<ClienteInsert
 	@Override
 	public boolean isValid(ClienteDTO objDto, ConstraintValidatorContext context) {
 		List<FieldMessage> list = new ArrayList<>();
-		
-		Cliente cpf = clienteRepository.findByCpf(objDto.getCpf());
-		
-		if(cpf != null) {
+
+		Cliente auxCpf = clienteRepository.findByCpf(objDto.getCpf());
+		Cliente auxEmail = clienteRepository.findByEmail(objDto.getEmail());
+
+		if (auxCpf != null) {
 			list.add(new FieldMessage("cpf", "CPF já cadastrado!"));
 		}
-		
-		Cliente email = clienteRepository.findByEmail(objDto.getEmail());
-		
-		if(email != null) {
+
+		if (auxEmail != null) {
 			list.add(new FieldMessage("email", "Email já cadastrado!"));
 		}
-
+		
 		for (FieldMessage e : list) {
 			context.disableDefaultConstraintViolation();
 			context.buildConstraintViolationWithTemplate(e.getMessage()).addPropertyNode(e.getFieldName())
