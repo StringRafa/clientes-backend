@@ -8,9 +8,9 @@ import javax.validation.ConstraintValidatorContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.panamby.clientes.dto.ClienteDTO;
 import com.panamby.clientes.model.entities.Cliente;
 import com.panamby.clientes.model.repository.ClienteRepository;
+import com.panamby.clientes.rest.dto.ClienteDTO;
 import com.panamby.clientes.services.exceptions.FieldMessage;
 
 public class ClienteInsertValidator implements ConstraintValidator<ClienteInsert, ClienteDTO> {
