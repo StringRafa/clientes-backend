@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.panamby.clientes.dto.ClienteDTO;
-import com.panamby.clientes.dto.ClienteNewDTO;
 import com.panamby.clientes.model.entities.Cliente;
+import com.panamby.clientes.rest.dto.ClienteDTO;
+import com.panamby.clientes.rest.dto.ClienteNewDTO;
 import com.panamby.clientes.services.ClienteService;
 
 @RestController

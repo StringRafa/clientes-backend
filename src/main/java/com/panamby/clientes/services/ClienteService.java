@@ -9,10 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import com.panamby.clientes.dto.ClienteDTO;
-import com.panamby.clientes.dto.ClienteNewDTO;
 import com.panamby.clientes.model.entities.Cliente;
 import com.panamby.clientes.model.repository.ClienteRepository;
+import com.panamby.clientes.rest.dto.ClienteDTO;
+import com.panamby.clientes.rest.dto.ClienteNewDTO;
 import com.panamby.clientes.services.exceptions.DataIntegrityException;
 import com.panamby.clientes.services.exceptions.ObjectNotFoundException;
 

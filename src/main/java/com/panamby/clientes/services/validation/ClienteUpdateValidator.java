@@ -11,9 +11,9 @@ import javax.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerMapping;
 
-import com.panamby.clientes.dto.ClienteNewDTO;
 import com.panamby.clientes.model.entities.Cliente;
 import com.panamby.clientes.model.repository.ClienteRepository;
+import com.panamby.clientes.rest.dto.ClienteNewDTO;
 import com.panamby.clientes.services.exceptions.FieldMessage;
 
 public class ClienteUpdateValidator implements ConstraintValidator<ClienteUpdate, ClienteNewDTO> {

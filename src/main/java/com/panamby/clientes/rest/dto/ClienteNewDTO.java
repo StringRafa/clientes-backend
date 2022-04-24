@@ -1,4 +1,4 @@
-package com.panamby.clientes.dto;
+package com.panamby.clientes.rest.dto;
 
 import java.io.Serializable;
 import java.time.LocalDate;
