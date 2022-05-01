@@ -13,10 +13,10 @@ import org.springframework.web.filter.CorsFilter;
 
 
 
-@Configuration
+//@Configuration
 public class WebConfig {
 
-	@Bean
+//	@Bean
 	public FilterRegistrationBean<CorsFilter> corsFilter(){
 		List<String> all = Arrays.asList("*");
 		
