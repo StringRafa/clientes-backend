@@ -30,7 +30,7 @@ public class ClienteController {
 	public ResponseEntity<Cliente> insert(@Valid @RequestBody ClienteDTO objDTO){
 		Cliente obj = service.fromDTO(objDTO);
 		obj = service.insert(obj);
-		return ResponseEntity.ok().body(obj);
+		return ResponseEntity.created(null).body(obj);
 	}
 	
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)
